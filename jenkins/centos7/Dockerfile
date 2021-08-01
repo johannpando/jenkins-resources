@@ -30,11 +30,16 @@ RUN chown remote_user:remote_user   -R /home/remote_user && \
 #AL SER CONTENERIZADO ES NECESARIO, NO OCURRE SI NO LO ES.
 RUN ssh-keygen -A
 
+#INSTALAMOS mysql
 RUN yum -y install mysql
 
+#INSTALAMOS AMAZON AWS CLI
+#INSTALAMOS EL REPOSITORIO EPEL
 RUN yum -y install epel-release && \
+    #INSTALAMOS LIBRERÍA DE PYTHON, PIP
     yum -y install python3-pip && \
     pip3 install --upgrade pip && \
+    #INSTALAMOS AWS CLI
     pip3 install awscli
 
 #EJECUTAMOS EL SERVICIO DE SSHD CON SIGUIENTE COMNADO, QUE ES 

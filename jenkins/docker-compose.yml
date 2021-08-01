@@ -26,15 +26,17 @@ services:
     #  - $PWD/aws-s3.sh:/tmp/script.sh
     networks:
       - net
-  # db_host:
-  #   container_name: db
-  #   image: mysql:5.7
-  #   environment:
-  #     - "MYSQL_ROOT_PASSWORD=1234"
-  #   volumes:
-  #     - $PWD/db_data:/var/lib/mysql
-  #   networks:
-  #     - net
+  #EL NOMBRE DEL SERVICIO EN LA VIDA REAL PUEDE SER UNA IP O DNS
+  db_host:
+    container_name: db
+    image: mysql:5.7
+    #DEFINIMOS UNA VARIABLE DE ENTORNO
+    environment:
+      - "MYSQL_ROOT_PASSWORD=1234"
+    volumes:
+      - $PWD/db_data:/var/lib/mysql
+    networks:
+      - net
   # web:
   #   container_name: web
   #   image: ansible-web
