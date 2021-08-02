@@ -22,8 +22,9 @@ services:
     build:
       #LE INDICAMOS LA RUTA DONDE SE ENCUENTRA EL DOCKERFILE
       context: centos7
-    #volumes:
-    #  - $PWD/aws-s3.sh:/tmp/script.sh
+    #HACER PERMANENTE EL SCRIPT
+    volumes:
+      - $PWD/aws-s3.sh:/tmp/script.sh
     networks:
       - net
   #EL NOMBRE DEL SERVICIO EN LA VIDA REAL PUEDE SER UNA IP O DNS
