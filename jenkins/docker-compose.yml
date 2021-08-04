@@ -37,15 +37,15 @@ services:
       - $PWD/db_data:/var/lib/mysql
     networks:
       - net
-  # web:
-  #   container_name: web
-  #   image: ansible-web
-  #   build:
-  #     context: jenkins-ansible/web
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     - net
+  web:
+    container_name: web
+    image: ansible-web
+    build:
+      context: jenkins-ansible/web
+    ports:
+      - "80:80"
+    networks:
+      - net
   # git:
   #   container_name: git-server
   #   image: 'gitlab/gitlab-ce:latest'

@@ -2,4 +2,4 @@
 - hosts: test1
   tasks:
    - debug:
-       msg: "{{ MSG }}"
+       msg: "Hola, mi nombre es {{ NAME }}"

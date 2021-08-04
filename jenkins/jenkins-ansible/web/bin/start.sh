@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Starts ssh
-
+#ARRANCA EL PROCESO DE SSH
 /usr/sbin/sshd
 
 # Starts php process in background

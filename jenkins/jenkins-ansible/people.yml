@@ -1,6 +1,8 @@
+#web1 HACE REFERENCIA A LA IMAGEN QUE CONTIENE NGNINX Y PHP
 - hosts: web1
   tasks:
     - name: Tranfer template to web server
       template:
+        #ES EL PHP QUE SE CONECTA A BBDD Y RECUPERA RESULTADOS
         src: table.j2
         dest: /var/www/html/index.php
