@@ -1,14 +1,14 @@
-version: '3'
+version: "3"
 services:
   jenkins:
     container_name: jenkins
     image: jenkins-ansible
     build:
-      context: jenkins-ansible     
+      context: jenkins-ansible
     ports:
       - "8080:8080"
     volumes:
-      - $PWD/jenkins_home:/var/jenkins_home
+      - ./jenkins_home:/var/jenkins_home
     networks:
       - net
   remote_host:
@@ -17,7 +17,7 @@ services:
     build:
       context: centos7
     volumes:
-      - $PWD/aws-s3.sh:/tmp/script.sh
+      - ./aws-s3.sh:/tmp/script.sh
     networks:
       - net
   db_host:
@@ -26,7 +26,7 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=1234"
     volumes:
-      - $PWD/db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
     networks:
       - net
   web:
@@ -40,14 +40,14 @@ services:
       - net
   git:
     container_name: git-server
-    image: 'gitlab/gitlab-ce:latest'
-    hostname: 'gitlab.example.com'
+    image: "gitlab/gitlab-ce:latest"
+    hostname: "gitlab.example.com"
     ports:
-      - '8090:80'
+      - "8095:80"
     volumes:
-      - '/srv/gitlab/config:/etc/gitlab'
-      - '/srv/gitlab/logs:/var/log/gitlab'
-      - '/srv/gitlab/data:/var/opt/gitlab'
+      - "/srv/gitlab/config:/etc/gitlab"
+      - "/srv/gitlab/logs:/var/log/gitlab"
+      - "/srv/gitlab/data:/var/opt/gitlab"
     networks:
       - net
 networks:
