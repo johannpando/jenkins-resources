@@ -1,2 +1,4 @@
 jenkins/jenkins_home/
 jenkins/db_data/
+jenkins/postgres_data/
+jenkins/srv/

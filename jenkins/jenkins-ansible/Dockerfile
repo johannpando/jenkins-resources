@@ -5,9 +5,26 @@ USER root
 RUN apt-get update && apt-get install python3-pip -y && \
     pip3 install ansible --upgrade
 
-RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
-  && tar xzvf docker-17.04.0-ce.tgz \
-  && mv docker/docker /usr/local/bin \
-  && rm -r docker docker-17.04.0-ce.tgz
+# Install Docker
+
+RUN apt-get update && \
+apt-get -y install apt-transport-https \
+     ca-certificates \
+     curl \
+     gnupg2 \
+     software-properties-common && \
+curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+   $(lsb_release -cs) \
+   stable" && \
+apt-get update && \
+apt-get -y install docker-ce
+
+# COmpose
+
+RUN curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+
+RUN usermod -aG docker jenkins
 
 USER jenkins
